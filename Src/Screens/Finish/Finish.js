@@ -60,7 +60,7 @@ const s = StyleSheet.create({
     },
     sizeButton: {
         elevation: 10,
-        backgroundColor: "rgba(50, 90, 90,.6)",
+        backgroundColor: "rgba(50, 91, 90,.6)",
         height: 25,
         alignItems: "center",
         justifyContent: "center",
