@@ -5,10 +5,8 @@ import {
   View,
   TouchableHighlight,
   TouchableOpacity,
-  Image,
-  ScrollView,
 } from "react-native";
-// import Icon from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 class ContentComponent extends Component {
   constructor(props) {
@@ -35,14 +33,14 @@ class ContentComponent extends Component {
               onPress={() => this.props.navigation.navigate("Home")}
             >
               <View style={styles.row}>
-                {/* <Icon
+                <Icon
                   style={{ width: "25%", textAlign: "center" }}
                   name="home"
                   type="font-awesome"
                   color="gray"
                   size={20}
-                /> */}
-                <Text style={styles.text}>דף הבית</Text>
+                />
+                <Text style={styles.text}>Home</Text>
               </View>
             </TouchableHighlight>
 
@@ -53,14 +51,14 @@ class ContentComponent extends Component {
               }
             >
               <View style={styles.row}>
-                {/* <Icon
+                <Icon
                   style={{ width: "25%", textAlign: "center" }}
-                  name="place-of-worship"
+                  name="search-plus"
                   type="font-awesome"
                   color="gray"
                   size={20}
-                /> */}
-                <Text style={styles.text}>עמותות</Text>
+                />
+                <Text style={styles.text}>Shoes</Text>
               </View>
             </TouchableHighlight>
 
@@ -69,14 +67,14 @@ class ContentComponent extends Component {
               onPress={() => this.props.navigation.navigate("Shirts")}
             >
               <View style={styles.row}>
-                {/* <Icon
+                <Icon
                   style={{ width: "25%", textAlign: "center" }}
-                  name="hand-holding-heart"
+                  name="search-plus"
                   type="font-awesome"
                   color="gray"
                   size={20}
-                /> */}
-                <Text style={styles.text}>תרומות</Text>
+                />
+                <Text style={styles.text}>Pants</Text>
               </View>
             </TouchableHighlight>
 
@@ -85,14 +83,14 @@ class ContentComponent extends Component {
               onPress={() => this.props.navigation.navigate("Pants")}
             >
               <View style={styles.row}>
-                {/* <Icon
+                <Icon
                   style={{ width: "25%", textAlign: "center" }}
-                  name="cart-plus"
+                  name="search-plus"
                   type="font-awesome"
                   color="gray"
                   size={20}
-                /> */}
-                <Text style={styles.text}>פרסום תרומה</Text>
+                />
+                <Text style={styles.text}>Shirt</Text>
               </View>
             </TouchableHighlight>
 

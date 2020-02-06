@@ -1,12 +1,7 @@
 import { Dimensions } from "react-native";
-import {createAppContainer}  from 'react-navigation'
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator } from "react-navigation-drawer";
-
-import Home from '../../Screens/Home'
-import Shirts from '../../Screens/Shirts'
-import Shoes from '../../Screens/Shoes'
-import Pants from '../../Screens/Pants'
+import { Home, Pants, Finish,Shoes,Shirts } from '../../Screens';
 
 import ContentComponent from '../../Components/ContentComponent/ContentComponent'
 
@@ -21,6 +16,8 @@ const MainNavigator = createStackNavigator(
     Shoes: { screen: Shoes },
 
     Pants: { screen: Pants },
+    Finish: { screen: Finish },
+
   },
   {
     headerMode: "none"
@@ -35,9 +32,9 @@ const DrawerNavigator = createDrawerNavigator(
     initialRouteName: "MainNavigator",
     contentComponent: ContentComponent,
     drawerWidth: Dimensions.get("window").width,
-    drawerPosition: "right",
+    drawerPosition: "left",
     overlayColor: "none",
     drawerBackgroundColor: "transparent"
   }
 );
-export default createAppContainer(DrawerNavigator);
+export default (DrawerNavigator);

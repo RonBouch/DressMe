@@ -4,7 +4,7 @@ import {inject} from 'mobx-react'
 import { ScrollView } from 'react-native-gesture-handler';
 import ItemView from '../../Components/ItemView'
 import CollectionType from '../../Components/CollectionType'
-
+import {MenuBar} from '../../Components/Button'
 @inject('CollectionsStore')
 export default class Pants extends Component {
     constructor(props) {
@@ -37,7 +37,8 @@ export default class Pants extends Component {
         const {CollectionsStore}=this.props;
         return (
             <View style={s.container}>
-                <Text style={s.title}> Select Shirt ! </Text>
+                <Text style={s.title}> Select Pants ! </Text>
+                <MenuBar navigation={this.props.navigation}/>
                 <TextInput style={s.search} placeholder="Search" onChangeText={(e)=>this.setState({search:e})}/>
                 <Text>You have {this.state.count.length} items</Text>
                 <ScrollView>

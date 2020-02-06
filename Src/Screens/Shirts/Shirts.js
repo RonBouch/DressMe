@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Text, View ,TextInput,TouchableOpacity,FlatList,SafeAreaView, StyleSheet} from 'react-native'
-import {observer,inject} from 'mobx-react'
+import {inject} from 'mobx-react'
 import { ScrollView } from 'react-native-gesture-handler';
 import ItemView from '../../Components/ItemView'
 import CollectionType from '../../Components/CollectionType'
-
+import {Menubar} from '../../Components/Button'
 @inject('CollectionsStore')
 export default class Shirts extends Component {
     constructor(props) {
@@ -36,6 +36,8 @@ export default class Shirts extends Component {
         const {CollectionsStore}=this.props;
         return (
             <View style={s.container}>
+                <MenuBar navigation={this.props.navigation}/>
+
                 <Text style={s.title}> Select Shirt ! </Text>
                 <TextInput style={s.search} placeholder="Search" onChangeText={(e)=>this.setState({search:e})}/>
                 <Text>You have {this.state.count.length} items</Text>

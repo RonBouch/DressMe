@@ -2,7 +2,6 @@ import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import React, {Component} from 'react';
 
 export default BtnCheck = props => {
-  console.log('btn  ', props);
   return (
     <TouchableOpacity
       style={[

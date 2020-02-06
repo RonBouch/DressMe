@@ -1,23 +1,15 @@
 import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
-import { Home, Pants, Finish,Shoes,Shirts } from '../Screens';
-// import {createStackNavigator} from 'react-navigation-stack'
-// import DrawerNavigator from './DrawerNavigator/DrawerNavigator'
-// import btnCheck from '../Components/Button/BtnCheck'
+import DrawerNavigator from './DrawerNavigator'
 
 
-const AppSwitchNavigator = createStackNavigator({
-  // DrawerNavigator:{screen:DrawerNavigator},
-    Home:{screen:Home},
-    Pants:{screen:Pants},
-    Shoes:{screen: Shoes},
-    Shirts:{screen:Shirts},
-    Finish:{screen:Finish}
+const AppNavigator = createStackNavigator({
+  DrawerNavigator:{screen:DrawerNavigator},
   },
   {
     headerMode: "none",
     defaultNavigationOptions: { headerVisable: false }
   }
   ); 
-  const AppContainer = createAppContainer(AppSwitchNavigator);
+  const AppContainer = createAppContainer(AppNavigator);
   export default AppContainer

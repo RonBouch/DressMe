@@ -14,9 +14,7 @@ export default class Finish extends Component {
         this.props.navigation.navigate('Home');
       };
     render() {
-        console.log("finish  ",this.props)
         const {CollectionsStore}=this.props;
-
         return (
           <View style={s.container}>
           <Image source={{uri:('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Commons-emblem-success.svg/1024px-Commons-emblem-success.svg.png')}} style={{width:200,height:200}}/>

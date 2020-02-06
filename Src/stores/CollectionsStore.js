@@ -1,11 +1,10 @@
-import {observable, action, computed, runInAction, configure} from 'mobx';
+import {observable, action, runInAction, configure} from 'mobx';
 import {persist, create} from 'mobx-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 configure({enforceActions: 'observed'});
 
 class CollectionsStore {
   @observable collections = [];
-
   @observable myShoes = null;
   @observable myShirt = null;
   @observable myPants = null;
@@ -53,10 +52,6 @@ class CollectionsStore {
         console.log(error);
       });
   };
-
-  @computed get setsCount() {
-    return this.collections.length;
-  }
 }
 
 const hydrate = create({

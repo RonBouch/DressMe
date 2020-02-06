@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-
+import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {observer, inject} from 'mobx-react';
-import BtnCheck from '../../Components/Button/BtnCheck';
+import {BtnCheck,MenuBar} from '../../Components/Button';
+
 @inject('CollectionsStore')
 @observer
 export default class Home extends React.Component {
@@ -20,31 +15,31 @@ export default class Home extends React.Component {
     this.props.CollectionsStore.fetchDataAsync();
   }
 
- 
-
   render() {
     const {CollectionsStore} = this.props;
-    console.log('Props ', this.props);
     return (
       <View style={{flex: 1, alignItems: 'center', marginTop: 70}}>
+      <MenuBar navigation={this.props.navigation}/>
+       
         <View style={{}}>
           <Text style={{fontSize: 20}}>Dress me application</Text>
+          
           <Text>sum of set - {CollectionsStore.sumOfSet}</Text>
         </View>
-        
+
         <View style={{flex: 1, margin: 10, justifyContent: 'space-around'}}>
           <BtnCheck
-            name={"Shoes"}
+            name={'Shoes'}
             exist={CollectionsStore.myShoes}
             navigation={this.props.navigation}
           />
           <BtnCheck
-            name={"Pants"}
+            name={'Pants'}
             exist={CollectionsStore.myPants}
             navigation={this.props.navigation}
           />
           <BtnCheck
-            name={"Shirts"}
+            name={'Shirts'}
             exist={CollectionsStore.myShirt}
             navigation={this.props.navigation}
           />
@@ -54,7 +49,7 @@ export default class Home extends React.Component {
             CollectionsStore.myShoes ? (
               <TouchableOpacity
                 style={s.finishButton}
-                onPress={()=>this.props.navigation.navigate("Finish")}>
+                onPress={() => this.props.navigation.navigate('Finish')}>
                 <Text>Finish</Text>
               </TouchableOpacity>
             ) : (
@@ -88,12 +83,10 @@ const s = StyleSheet.create({
   txtErr: {
     color: 'red',
   },
+  menuSide: {
+    position: 'absolute',
+    left: 5,
+    width: 60,
+    height: 60,
+  },
 });
-
-{
-  /* <FlatList
-               data={CollectionsStores}
-               renderItem={({ item }) => <CollectionsStore CollectionsStore={item} />}
-               keyExtractor={item =>item.id+item.name}
-             /> */
-}

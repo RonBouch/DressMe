@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import React, {Component} from 'react';
 export default OrderDetails = props => {
   return (

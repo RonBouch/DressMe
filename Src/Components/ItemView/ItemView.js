@@ -44,8 +44,7 @@ export default class ItemView extends Component {
             justifyContent: 'space-around',
             alignItems: 'center',
           }}>
-          <TouchableOpacity
-           >
+          <TouchableOpacity >
             <Text style={s.txtItem}>
               {item.brand} - {item.type}
             </Text>
