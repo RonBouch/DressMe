@@ -46,7 +46,7 @@ export default class ItemView extends Component {
           }}>
           <TouchableOpacity >
             <Text style={s.txtItem}>
-              {item.brand} - {item.type}
+              {item.brand} - {item.name}
             </Text>
           </TouchableOpacity>
           <View style={{flexDirection:'row'}}>
