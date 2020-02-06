@@ -11,11 +11,12 @@ const MainNavigator = createStackNavigator(
   {
     Home: { screen: Home },
 
-    Shirts: { screen: Shirts },
 
     Shoes: { screen: Shoes },
 
     Pants: { screen: Pants },
+    Shirts: { screen: Shirts },
+    
     Finish: { screen: Finish },
 
   },

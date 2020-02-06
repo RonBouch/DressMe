@@ -12,21 +12,37 @@ export default class Shoes extends Component {
         super(props);
         this.state={
             search:"",
-            count:0
+            fList:[],
+            collections:[]
         }
     }
     componentDidMount(){
-        let len=   this.props.CollectionsStore.collections.filter((item) =>{
+        let fil=   this.props.CollectionsStore.collections.filter((item) =>{
             return item.type == "shoes";
     })
-    this.setState({
-        count:len
-    })
+    this.setState({collections:fil,fList:fil})
 }
- 
-    search(item){
+    filterBySearch(e){
+        if(e!=""){
+          
+            let fil=   this.state.collections.filter((item,i) =>{
+                return this.search(item,e) && i<5;
+        })
+        this.setState({
+            fList:fil,
+            search:e,
+        })
+        }
+        else{
+          this.setState({
+            fList:this.state.collections,
+            })
+    }
+       
+    }
+    search(item,e){
         if(
-            item.sizes.includes(parseInt(this.state.search))||item.name.includes(this.state.search.toLowerCase())||item.brand.includes(this.state.search.toLowerCase())||item.colors.includes(this.state.search.toLowerCase())
+            item.sizes.includes(parseInt(e))||item.name.includes(e.toLowerCase())||item.brand.includes(e.toLowerCase())||item.colors.includes(e.toLowerCase())
         ){
             return true;
         }
@@ -34,24 +50,21 @@ export default class Shoes extends Component {
        
     }
     
-    render() {
-        const {CollectionsStore}=this.props;
+    render() {       
         return (
             <View style={s.container}>
                 <MenuBar navigation={this.props.navigation}/>
 
                 <Text style={s.title}> Select Shoes ! </Text>
-                <TextInput style={s.search} placeholder="Search" onChangeText={(e)=>this.setState({search:e})}/>
-                <Text>You have {this.state.count.length} items</Text>
+                <TextInput style={s.search} placeholder="Search" onChangeText={(e)=>this.filterBySearch(e)}/>
+                <Text>You have {this.state.fList.length} items</Text>
                 <ScrollView>
-               {CollectionsStore.collections.map((item, index) => {
-                      if(this.search(item)){
-            if(item.type=='shoes'){
-                return(
-                    <ItemView key={index}type={CollectionType.SHOES} item={item} props={this.props}/>
-                )
-            }   
-        }        
+               {this.state.fList.map((item, index) => {
+                    return(
+                        <ItemView key={index}type={CollectionType.SHOES} item={item} props={this.props}/>
+                    )
+                   
+               
         })}
                 </ScrollView>
             </View>

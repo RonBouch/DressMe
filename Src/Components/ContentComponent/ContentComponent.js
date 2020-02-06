@@ -64,7 +64,7 @@ class ContentComponent extends Component {
 
             <TouchableHighlight
               underlayColor={"rgba(0,0,0,0.2)"}
-              onPress={() => this.props.navigation.navigate("Shirts")}
+              onPress={() => this.props.navigation.navigate("Pants")}
             >
               <View style={styles.row}>
                 <Icon
@@ -80,7 +80,7 @@ class ContentComponent extends Component {
 
             <TouchableHighlight
               underlayColor={"rgba(0,0,0,0.2)"}
-              onPress={() => this.props.navigation.navigate("Pants")}
+              onPress={() => this.props.navigation.navigate("Shirts")}
             >
               <View style={styles.row}>
                 <Icon
