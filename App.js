@@ -7,23 +7,17 @@
  */
 
 import React from 'react';
+import {Provider} from 'mobx-react';
+import AppContainer from './Src/routes/AppContainer';
+import CollectionsStore from './Src/stores/CollectionsStore';
 
-
-import {Provider} from 'mobx-react'
-import AppContainer from './Src/routes/AppContainer'
-// import DrawerNavigator from './Src/routes/DrawerNavigator'
-import CollectionsStore from './Src/stores/CollectionsStore'
-class App extends React.Component{
-  render(){
+class App extends React.Component {
+  render() {
     return (
       <Provider CollectionsStore={CollectionsStore}>
-       <AppContainer/>
+        <AppContainer />
       </Provider>
-
-    )
+    );
   }
 }
 export default App;
-
-
-

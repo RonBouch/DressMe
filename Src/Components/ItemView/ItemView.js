@@ -1,8 +1,6 @@
-import {Text, TouchableOpacity, View, StyleSheet,Alert} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet, Alert} from 'react-native';
 import React, {Component} from 'react';
-import { inject} from 'mobx-react';
-import CollectionType from '../../Components/CollectionType'
-
+import {inject} from 'mobx-react';
 @inject('CollectionsStore')
 export default class ItemView extends Component {
   constructor(props) {
@@ -10,27 +8,19 @@ export default class ItemView extends Component {
     this.state = {
       check: false,
       viewSize: -1,
-      color:""
+      color: '',
     };
   }
 
-  onAddItem = async item => {
-      let color=this.state.color;
-      switch (this.props.type) {
-          case CollectionType.SHOES:
-          await this.props.CollectionsStore.addShoes({item,color});
-              break;
-          case CollectionType.PANTS:
-          await this.props.CollectionsStore.addPants({item,color});
-          break;
-          case CollectionType.SHIRT:
-          await this.props.CollectionsStore.addShirt({item,color});
-
-          break;
-          default:
-              break;
-      }
-   
+  onAddItem = async (item, size) => {
+    let Item = {
+      name: item.name,
+      brand: item.brand,
+      type: item.type,
+      color: this.state.color,
+      size,
+    };
+    this.props.CollectionsStore.addItem(Item);
     this.props.props.navigation.navigate('Home');
   };
 
@@ -44,37 +34,53 @@ export default class ItemView extends Component {
             justifyContent: 'space-around',
             alignItems: 'center',
           }}>
-          <TouchableOpacity >
+          <TouchableOpacity>
             <Text style={s.txtItem}>
               {item.brand} - {item.name}
             </Text>
           </TouchableOpacity>
-          <View style={{flexDirection:'row'}}>
-          {item.colors.map((color,i)=>{
-           return(
-            <TouchableOpacity key={i} style={{padding:5}}  onPress={() =>
-              this.setState({viewSize: key, check: !this.state.check,color:color})
-            } >
-              <Text style={{color:color,fontWeight:'bold'}}>{color}</Text>
-            </TouchableOpacity>
-           )
-          })}
+          <View style={{flexDirection: 'row'}}>
+            {item.colors.map((color, i) => {
+              return (
+                <TouchableOpacity
+                  key={i}
+                  style={{padding: 5}}
+                  onPress={() =>
+                    this.setState({
+                      viewSize: key,
+                      check: !this.state.check,
+                      color,
+                    })
+                  }>
+                  <Text style={{color: color, fontWeight: 'bold'}}>
+                    {color}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
           </View>
-       
-          {this.state.viewSize == key && this.state.check == true
+
+          {this.state.viewSize == key && this.state.check
             ? item.sizes.map((size, i) => {
                 return (
                   <TouchableOpacity
                     key={i}
-                       onPress={  () =>Alert.alert(
-                  'You Sure',
-                  'Do you want this item?',
-                  [
-                    {text: 'Cancel', onPress: () => {return null}},
-                    {text: 'Confirm', onPress: () => {
-                      this.onAddItem({item,size})
-              }}])}
-                    >
+                    onPress={() =>
+                      Alert.alert('You Sure', 'Do you want this item?', [
+                        {
+                          text: 'Cancel',
+                          onPress: () => {
+                            return null;
+                          },
+                        },
+                        {
+                          text: 'Confirm',
+                          onPress: () => {
+                            this.onAddItem(item, size);
+                          },
+                        },
+                      ])
+                    }>
                     <Text>{size}</Text>
                   </TouchableOpacity>
                 );

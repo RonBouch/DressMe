@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {observer, inject} from 'mobx-react';
-import {BtnCheck,MenuBar} from '../../Components/Button';
+import {BtnCheck, MenuBar} from '../../Components/Button';
+import {CollectionType} from '../../utils/enums';
 
 @inject('CollectionsStore')
 @observer
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   componentDidMount() {
@@ -19,34 +19,28 @@ export default class Home extends React.Component {
     const {CollectionsStore} = this.props;
     return (
       <View style={{flex: 1, alignItems: 'center', marginTop: 70}}>
-      <MenuBar navigation={this.props.navigation}/>
-       
+        <MenuBar navigation={this.props.navigation} />
+
         <View style={{}}>
           <Text style={{fontSize: 20}}>Dress me application</Text>
-          
+
           <Text>sum of set - {CollectionsStore.sumOfSet}</Text>
         </View>
 
         <View style={{flex: 1, margin: 10, justifyContent: 'space-around'}}>
-          <BtnCheck
-            name={'Shoes'}
-            exist={CollectionsStore.myShoes}
-            navigation={this.props.navigation}
-          />
-          <BtnCheck
-            name={'Pants'}
-            exist={CollectionsStore.myPants}
-            navigation={this.props.navigation}
-          />
-          <BtnCheck
-            name={'Shirts'}
-            exist={CollectionsStore.myShirt}
-            navigation={this.props.navigation}
-          />
+          {Object.keys(CollectionType).map((item, index) => {
+            return (
+              <BtnCheck
+                key={index}
+                name={item.toLowerCase()}
+                exist={CollectionsStore.items[index]}
+                navigation={this.props.navigation}
+              />
+            );
+          })}
+
           <View>
-            {CollectionsStore.myPants &&
-            CollectionsStore.myShirt &&
-            CollectionsStore.myShoes ? (
+            {!CollectionsStore.items.includes(null) ? (
               <TouchableOpacity
                 style={s.finishButton}
                 onPress={() => this.props.navigation.navigate('Finish')}>

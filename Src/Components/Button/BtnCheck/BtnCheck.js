@@ -1,5 +1,5 @@
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import React, {Component} from 'react';
+import React from 'react';
 
 export default BtnCheck = props => {
   return (
@@ -8,7 +8,7 @@ export default BtnCheck = props => {
         s.finishButton,
         {backgroundColor: props.exist ? 'red' : 'rgba(208, 222, 9,.9)'},
       ]}
-      onPress={() => props.navigation.navigate(props.name)}>
+      onPress={() => props.navigation.navigate('DressMeScreen',{name:props.name,})}>
       <Text>{props.name}</Text>
     </TouchableOpacity>
   );

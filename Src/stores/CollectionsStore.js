@@ -1,29 +1,35 @@
 import {observable, action, runInAction, configure} from 'mobx';
 import {persist, create} from 'mobx-persist';
 import AsyncStorage from '@react-native-community/async-storage';
+import {CollectionType} from '../utils/enums';
 configure({enforceActions: 'observed'});
 
 class CollectionsStore {
   @observable collections = [];
-  @observable myShoes = null;
-  @observable myShirt = null;
-  @observable myPants = null;
   @persist @observable sumOfSet = 0;
+  @observable items = Array(Object.keys(CollectionType).length).fill(null);
 
-  @action addShoes = item => {
-    this.myShoes = item;
+  @action addItem = item => {
+    this.items[parseInt(CollectionType[item.type.toUpperCase()])] = item;
+    // switch (parseInt(CollectionType[item.type.toUpperCase()])) {
+    //   case 0:
+    //     this.myShoes = item;
+    //     break;
+    //   case 1:
+    //     this.myPants = item;
+    //     break;
+    //   case 2:
+    //     this.myShirt = item;
+    //     break;
+    //   default:
+    //     break;
+    // }
+    // this.items[CollectionType[item.type.toUpperCase()]]= item;
   };
-  @action addShirt = item => {
-    this.myShirt = item;
-  };
-  @action addPants = item => {
-    this.myPants = item;
-  };
+
   @action addSet = () => {
     this.sumOfSet = this.sumOfSet + 1;
-    this.myShirt = null;
-    this.myPants = null;
-    this.myShoes = null;
+    this.items = Array(Object.keys(CollectionType).length).fill(null);
   };
   @action fetchDataAsync = async () => {
     fetch(
@@ -38,10 +44,6 @@ class CollectionsStore {
     )
       .then(response => response.json())
       .then(collections => {
-        console.log(
-          'collections = >',
-          collections.results.sort((a, b) => (a.name > b.name ? 1 : -1)),
-        );
         runInAction(() => {
           this.collections = collections.results.sort((a, b) =>
             a.brand > b.brand ? 1 : -1,
@@ -64,4 +66,3 @@ hydrate('CollectionsStore', store).then(() =>
   console.log('someStore has been hydrated'),
 );
 export default store;
-
