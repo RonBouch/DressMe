@@ -7,7 +7,9 @@ import ContentDrawer from '../../Components/ContentDrawer/ContentDrawer';
 const MainNavigator = createStackNavigator(
   {
     Home: {screen: Home},
-    DressMeScreen: {screen: DressMeScreen},
+    shirt: {screen: DressMeScreen},
+    shoes: {screen: DressMeScreen},
+    pants: {screen: DressMeScreen},
     Finish: {screen: Finish},
   },
   {

@@ -3,10 +3,9 @@ import {Text, View, TextInput, StyleSheet} from 'react-native';
 import {inject} from 'mobx-react';
 import {ScrollView} from 'react-native-gesture-handler';
 import ItemView from '../../Components/ItemView';
-import {Menubar} from '../../Components/Button';
-import {CollectionType} from '../../utils/enums';
+
 @inject('CollectionsStore')
-export default class DressScreen extends Component {
+export default class DressMeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,14 +16,12 @@ export default class DressScreen extends Component {
   }
 
   componentDidMount() {
-    this.onUploadScreen(this.props);
+    this.onUploadScreen();
   }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.onUploadScreen(nextProps);
-  }
-  onUploadScreen(props) {
-    let fil = props.CollectionsStore.collections.filter(item => {
-      return item.type == props.navigation.state.params.name;
+
+  onUploadScreen() {
+    let fil = this.props.CollectionsStore.collections.filter(item => {
+      return item.type == this.props.navigation.state.params.name;
     });
     this.setState({collections: fil, fList: fil});
   }
@@ -44,17 +41,12 @@ export default class DressScreen extends Component {
       });
     }
   }
-  search(item, e) {
-    if (
-      item.sizes.includes(parseInt(e)) ||
-      item.name.includes(e.toLowerCase()) ||
-      item.brand.includes(e.toLowerCase()) ||
-      item.colors.includes(e.toLowerCase())
-    ) {
-      return true;
-    }
-    return false;
-  }
+
+  search = (item, e) =>
+    item.sizes.includes(parseInt(e)) ||
+    item.name.includes(e.toLowerCase()) ||
+    item.brand.includes(e.toLowerCase()) ||
+    item.colors.includes(e.toLowerCase());
 
   render() {
     return (

@@ -1,14 +1,15 @@
 import {Text, View, StyleSheet} from 'react-native';
 import React, {Component} from 'react';
 
-export default OrderDetails = props => {
+export default OrderDetails = ({item}) => {
+  const {type, name, brand, size, color} = item;
   return (
     <View style={{flexDirection: 'column', margin: 5}}>
-      <Text style={s.title}>{props.item.type}</Text>
-      <Text>Name : {props.item.name}</Text>
-      <Text>Brand : {props.item.brand} </Text>
-      <Text>Size : {props.item.size}</Text>
-      <Text>Color : {props.item.color}</Text>
+      <Text style={s.title}>{type}</Text>
+      <Text>Name : {name}</Text>
+      <Text>Brand : {brand} </Text>
+      <Text>Size : {size}</Text>
+      <Text>Color : {color}</Text>
     </View>
   );
 };

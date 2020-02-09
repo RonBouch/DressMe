@@ -8,7 +8,7 @@ export default BtnCheck = props => {
         s.finishButton,
         {backgroundColor: props.exist ? 'red' : 'rgba(208, 222, 9,.9)'},
       ]}
-      onPress={() => props.navigation.navigate('DressMeScreen',{name:props.name,})}>
+      onPress={() => props.navigation.navigate(props.name,{name:props.name,})}>
       <Text>{props.name}</Text>
     </TouchableOpacity>
   );

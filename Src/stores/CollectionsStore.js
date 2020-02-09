@@ -10,7 +10,7 @@ class CollectionsStore {
   @observable items = Array(Object.keys(CollectionType).length).fill(null);
 
   @action addItem = item => {
-    this.items[parseInt(CollectionType[item.type.toUpperCase()])] = item;
+    this.items[+CollectionType[item.type.toUpperCase()]] = item;
     // switch (parseInt(CollectionType[item.type.toUpperCase()])) {
     //   case 0:
     //     this.myShoes = item;
@@ -31,6 +31,7 @@ class CollectionsStore {
     this.sumOfSet = this.sumOfSet + 1;
     this.items = Array(Object.keys(CollectionType).length).fill(null);
   };
+  
   @action fetchDataAsync = async () => {
     fetch(
       'http://www.mocky.io/v2/5e3940013200005e00ddf87e​?mocky-delay=600ms',

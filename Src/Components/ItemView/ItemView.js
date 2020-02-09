@@ -14,9 +14,7 @@ export default class ItemView extends Component {
 
   onAddItem = async (item, size) => {
     let Item = {
-      name: item.name,
-      brand: item.brand,
-      type: item.type,
+      ...item,
       color: this.state.color,
       size,
     };

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {DrawerActions} from 'react-navigation-drawer';
+import {CollectionType} from '../../utils/enums';
 
 export default ContentDrawer = props => {
   return (
@@ -36,59 +37,31 @@ export default ContentDrawer = props => {
             <Text style={styles.text}>Home</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor={'rgba(0,0,0,0.2)'}
-          onPress={() => {
-            props.navigation.navigate('DressMeScreen', {name: 'shoes'});
-            props.navigation.dispatch(DrawerActions.closeDrawer());
-          }}>
-          <View style={styles.row}>
-            <Icon
-              style={{width: '25%', textAlign: 'center'}}
-              name="search-plus"
-              type="font-awesome"
-              color="gray"
-              size={20}
-            />
-            <Text style={styles.text}>Shoes</Text>
-          </View>
-        </TouchableHighlight>
 
-        <TouchableHighlight
-          underlayColor={'rgba(0,0,0,0.2)'}
-          onPress={() => {
-            props.navigation.navigate('DressMeScreen', {name: 'pants'});
-            props.navigation.dispatch(DrawerActions.closeDrawer());
-          }}>
-          <View style={styles.row}>
-            <Icon
-              style={{width: '25%', textAlign: 'center'}}
-              name="search-plus"
-              type="font-awesome"
-              color="gray"
-              size={20}
-            />
-            <Text style={styles.text}>Pants</Text>
-          </View>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          underlayColor={'rgba(0,0,0,0.2)'}
-          onPress={() => {
-            props.navigation.navigate('DressMeScreen', {name: 'shirt'});
-            props.navigation.dispatch(DrawerActions.closeDrawer());
-          }}>
-          <View style={styles.row}>
-            <Icon
-              style={{width: '25%', textAlign: 'center'}}
-              name="search-plus"
-              type="font-awesome"
-              color="gray"
-              size={20}
-            />
-            <Text style={styles.text}>Shirt</Text>
-          </View>
-        </TouchableHighlight>
+        {Object.keys(CollectionType).map((item, index) => {
+          return (
+            <TouchableHighlight
+              key={index}
+              underlayColor={'rgba(0,0,0,0.2)'}
+              onPress={() => {
+                props.navigation.navigate(item.toLowerCase(), {
+                  name: item.toLowerCase(),
+                });
+                props.navigation.dispatch(DrawerActions.closeDrawer());
+              }}>
+              <View style={styles.row}>
+                <Icon
+                  style={{width: '25%', textAlign: 'center'}}
+                  name="search-plus"
+                  type="font-awesome"
+                  color="gray"
+                  size={20}
+                />
+                <Text style={styles.text}>{item.toLowerCase()}</Text>
+              </View>
+            </TouchableHighlight>
+          );
+        })}
       </TouchableOpacity>
     </TouchableOpacity>
   );
